@@ -20,7 +20,7 @@ class UsersPresenter (
         router.navigateTo(UserScreen(login))
     }
 
-    fun updateContent() {
+    private fun updateContent() {
         userRepository.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
