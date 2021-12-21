@@ -8,7 +8,6 @@ import com.example.interactionwits_hw5.R
 import com.example.interactionwits_hw5.data.GitHubUser
 import com.example.interactionwits_hw5.data.GitHubUserRepositoryFactory
 import com.example.interactionwits_hw5.databinding.ViewUserBinding
-import io.reactivex.rxjava3.core.Single
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -34,7 +33,7 @@ class UserFragment : MvpAppCompatFragment(R.layout.view_user), UserView {
         viewBinding.userLogin.text = userName
     }
 
-    override fun showUser(user: Single<GitHubUser>) {
+    override fun showUser(user: GitHubUser) {
         viewBinding.userLogin.text = user.toString()
     }
 

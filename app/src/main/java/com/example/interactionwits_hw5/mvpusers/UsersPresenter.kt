@@ -1,5 +1,7 @@
 package com.example.interactionwits_hw5.mvpusers
 
+import android.widget.Toast
+import com.example.interactionwits_hw5.App
 import com.example.interactionwits_hw5.data.GitHubUserRepository
 import com.example.interactionwits_hw5.mvpuser.UserScreen
 import com.example.interactionwits_hw5.navigation.CustomRouter
@@ -28,7 +30,8 @@ class UsersPresenter (
                 viewState.showUsers(it)
             },{
                 val errorMessage = it.message
-                //DisplayError
+                Toast.makeText(App.instance.getContext(), "$errorMessage", Toast.LENGTH_SHORT)
+                    .show()
             })
     }
 }
