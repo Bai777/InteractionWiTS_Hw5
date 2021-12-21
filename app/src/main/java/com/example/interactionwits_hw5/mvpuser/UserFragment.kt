@@ -8,6 +8,7 @@ import com.example.interactionwits_hw5.R
 import com.example.interactionwits_hw5.data.GitHubUser
 import com.example.interactionwits_hw5.data.GitHubUserRepositoryFactory
 import com.example.interactionwits_hw5.databinding.ViewUserBinding
+import io.reactivex.rxjava3.core.Single
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -15,13 +16,13 @@ class UserFragment : MvpAppCompatFragment(R.layout.view_user), UserView {
 
     private lateinit var viewBinding: ViewUserBinding
 
-    private val userLogin: String by lazy {
-        arguments?.getString(ARG_USER_LOGIN).orEmpty()
+    private val userName: String by lazy {
+        arguments?.getString(ARG_USER_NAME).orEmpty()
     }
 
     private val presenter: UserPresenter by moxyPresenter {
         UserPresenter(
-            userLogin = userLogin,
+            userName = userName,
             userRepository = GitHubUserRepositoryFactory.create(),
             router = router
         )
@@ -30,20 +31,20 @@ class UserFragment : MvpAppCompatFragment(R.layout.view_user), UserView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding = ViewUserBinding.bind(view)
-        viewBinding.userLogin.text = userLogin
+        viewBinding.userLogin.text = userName
     }
 
-    override fun showUser(user: GitHubUser) {
-        viewBinding.userLogin.text = user.login
+    override fun showUser(user: Single<GitHubUser>) {
+        viewBinding.userLogin.text = user.toString()
     }
 
     companion object {
-        private const val ARG_USER_LOGIN = "arg_user_login"
+        private const val ARG_USER_NAME = "arg_user_name"
 
-        fun newInstance(userId: String): Fragment =
+        fun newInstance(userName: String): Fragment =
             UserFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_USER_LOGIN, userId)
+                    putString(ARG_USER_NAME, userName)
                 }
             }
     }

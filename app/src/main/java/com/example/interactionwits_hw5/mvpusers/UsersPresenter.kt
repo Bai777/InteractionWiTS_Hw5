@@ -16,8 +16,8 @@ class UsersPresenter (
         updateContent()
     }
 
-    fun goToNextScreen(login: String) {
-        router.navigateTo(UserScreen(login))
+    fun goToNextScreen(name: String) {
+        router.navigateTo(UserScreen(name))
     }
 
     private fun updateContent() {

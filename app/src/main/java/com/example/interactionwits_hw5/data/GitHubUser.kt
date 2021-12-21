@@ -13,5 +13,7 @@ data class GitHubUser(
     @SerializedName("avatar_url")
     val avatarUrl: String? = null,
     @SerializedName("type")
-    val type: String = ""
+    val type: String = "",
+    @SerializedName("name")
+    val name: String = ""
 ) : Parcelable

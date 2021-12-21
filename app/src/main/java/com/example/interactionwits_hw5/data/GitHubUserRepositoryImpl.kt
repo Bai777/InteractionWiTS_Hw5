@@ -11,7 +11,7 @@ class GitHubUserRepositoryImpl : GitHubUserRepository {
         return gitHubApi.fetchUsers()
     }
 
-    override fun getUserByLogin(userId: String): GitHubUser? {
-        return null
+    override fun getUserByName(user: String): Single<GitHubUser> {
+        return gitHubApi.fetchUserByName(user)
     }
 }

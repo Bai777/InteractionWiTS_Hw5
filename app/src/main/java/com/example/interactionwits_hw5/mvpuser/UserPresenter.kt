@@ -5,14 +5,14 @@ import com.example.interactionwits_hw5.navigation.CustomRouter
 import moxy.MvpPresenter
 
 class UserPresenter (
-    private val userLogin: String,
+    private val userName: String,
     private val userRepository: GitHubUserRepository,
     private val router: CustomRouter
 ) : MvpPresenter<UserView>() {
 
     override fun onFirstViewAttach() {
         userRepository
-            .getUserByLogin(userLogin)
+            .getUserByName(userName)
             ?.let(viewState::showUser)
     }
 }
