@@ -3,10 +3,8 @@ package com.example.interactionwits_hw5.mvpuser
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.example.interactionwits_hw5.App.Navigation.router
 import com.example.interactionwits_hw5.R
 import com.example.interactionwits_hw5.data.GitHubUser
-import com.example.interactionwits_hw5.data.GitHubUserRepositoryFactory
 import com.example.interactionwits_hw5.databinding.ViewUserBinding
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -21,9 +19,7 @@ class UserFragment : MvpAppCompatFragment(R.layout.view_user), UserView {
 
     private val presenter: UserPresenter by moxyPresenter {
         UserPresenter(
-            userName = userName,
-            userRepository = GitHubUserRepositoryFactory.create(),
-            router = router
+            userName = userName
         )
     }
 

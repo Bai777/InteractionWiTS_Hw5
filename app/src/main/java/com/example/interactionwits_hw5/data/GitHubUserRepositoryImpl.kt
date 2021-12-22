@@ -1,14 +1,27 @@
 package com.example.interactionwits_hw5.data
 
 import com.example.interactionwits_hw5.data.retrofit.GitHubApiFactory
+import com.example.interactionwits_hw5.data.room.RoomFactory
 import io.reactivex.rxjava3.core.Single
 
 class GitHubUserRepositoryImpl : GitHubUserRepository {
 
     private val gitHubApi = GitHubApiFactory.create()
+    private val roomDb = RoomFactory.create().getGitHubUserDao()
 
     override fun getUsers(): Single<List<GitHubUser>> {
-        return gitHubApi.fetchUsers()
+        return roomDb.getUsers()
+            .flatMap {
+                if (it.isEmpty()){
+                    gitHubApi.fetchUsers()
+                        .map { resultFromServer ->
+                            roomDb.saveUser(resultFromServer)
+                            resultFromServer
+                        }
+                }else{
+                    Single.just(it)
+                }
+            }
     }
 
     override fun getUserByName(user: String): Single<GitHubUser> {

@@ -1,9 +1,7 @@
 package com.example.interactionwits_hw5.data.room
 
-import androidx.room.Dao
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
 import com.example.interactionwits_hw5.data.GitHubUser
 import io.reactivex.rxjava3.core.Single
 
@@ -20,4 +18,13 @@ interface GitHubUserDAO {
 
     @Insert(onConflict = REPLACE)
     fun saveUser(user: GitHubUser)
+
+    @Update
+    fun update(user: List<GitHubUser>)
+
+    @Update
+    fun update(user: GitHubUser)
+
+    @Delete
+    fun delete(user: GitHubUser)
 }
