@@ -50,6 +50,11 @@ dependencies {
     implementation "com.github.moxy-community:moxy-ktx:2.1.2"
     implementation "com.github.moxy-community:moxy-androidx:2.1.2"
 
+    //room
+    implementation 'androidx.room:room-runtime:2.4.0'
+    implementation 'androidx.room:room-rxjava3:2.4.0'
+    kapt 'androidx.room:room-compiler:2.4.0'
+
     //recycler
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
