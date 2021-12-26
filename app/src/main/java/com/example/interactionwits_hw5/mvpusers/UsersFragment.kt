@@ -1,5 +1,7 @@
 package com.example.interactionwits_hw5.mvpusers
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -37,6 +39,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.view_users), UsersView, User
     override fun onUserPicked(user: GitHubUser) {
         presenter.goToNextScreen(user.login!!)
     }
+
 
     companion object {
         fun newInstance(): Fragment = UsersFragment()

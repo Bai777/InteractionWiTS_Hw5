@@ -1,6 +1,7 @@
 package com.example.interactionwits_hw5.data.room
 
 import androidx.room.*
+import androidx.room.OnConflictStrategy.IGNORE
 import androidx.room.OnConflictStrategy.REPLACE
 import com.example.interactionwits_hw5.data.GitHubUser
 import io.reactivex.rxjava3.core.Single
@@ -14,10 +15,13 @@ interface GitHubUserDAO {
     fun getUserByLogin(login: String): Single<GitHubUser>
 
     @Insert(onConflict = REPLACE)
-    fun saveUser(users: List<GitHubUser>)
+    fun save(users: List<GitHubUser>)
 
     @Insert(onConflict = REPLACE)
     fun saveUser(user: GitHubUser)
+
+    @Insert(onConflict = IGNORE)
+    fun insert(Entity: List<GitHubUser>)
 
     @Update
     fun update(user: List<GitHubUser>)

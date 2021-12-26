@@ -4,7 +4,7 @@ import com.example.interactionwits_hw5.data.retrofit.GitHubApiFactory
 import com.example.interactionwits_hw5.data.room.RoomFactory
 import io.reactivex.rxjava3.core.Single
 
-class GitHubUserRepositoryImpl : GitHubUserRepository {
+class GitHubUserRepositoryImpl() : GitHubUserRepository {
 
     private val gitHubApi = GitHubApiFactory.create()
     private val roomDb = RoomFactory.create().getGitHubUserDao()
@@ -15,10 +15,13 @@ class GitHubUserRepositoryImpl : GitHubUserRepository {
                 if (it.isEmpty()){
                     gitHubApi.fetchUsers()
                         .map { resultFromServer ->
-                            roomDb.saveUser(resultFromServer)
+                            roomDb.insert(resultFromServer)
                             resultFromServer
                         }
                 }else{
+                    Single.fromCallable {
+                        roomDb.getUsers()
+                    }
                     Single.just(it)
                 }
             }
@@ -27,4 +30,5 @@ class GitHubUserRepositoryImpl : GitHubUserRepository {
     override fun getUserByName(user: String): Single<GitHubUser> {
         return gitHubApi.fetchUserByName(user)
     }
+
 }

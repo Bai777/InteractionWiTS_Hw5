@@ -29,9 +29,9 @@ class UsersPresenter (
             .subscribe({
                 viewState.showUsers(it)
             },{
-                val errorMessage = it.message
-                Toast.makeText(App.instance.getContext(), "$errorMessage", Toast.LENGTH_SHORT)
-                    .show()
+//                val errorMessage = it.message
+//                Toast.makeText(App.instance.getContext(), "$errorMessage", Toast.LENGTH_SHORT)
+//                    .show()
             })
     }
 }
