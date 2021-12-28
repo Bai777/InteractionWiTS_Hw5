@@ -18,12 +18,6 @@ class UserFragment : MvpAppCompatFragment(R.layout.view_user), UserView {
         arguments?.getString(ARG_USER_NAME).orEmpty()
     }
 
-    private val presenter: UserPresenter by moxyPresenter {
-        UserPresenter(
-            userRepository = GitHubUserRepositoryFactory.create(),
-            userName = userName
-        )
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

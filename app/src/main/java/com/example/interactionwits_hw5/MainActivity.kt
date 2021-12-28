@@ -1,15 +1,16 @@
 package com.example.interactionwits_hw5
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.interactionwits_hw5.App.Navigation.navigatorHolder
-import com.example.interactionwits_hw5.App.Navigation.router
+import androidx.appcompat.app.AppCompatActivity
 import com.example.interactionwits_hw5.databinding.ActivityMainBinding
-import com.example.interactionwits_hw5.mvpusers.UsersScreen
-import com.example.interactionwits_hw5.navigation.CustomNavigator
+import com.github.terrakok.cicerone.NavigatorHolder
+import com.github.terrakok.cicerone.androidx.AppNavigator
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    private val navigator = CustomNavigator(activity = this, R.id.container_for_fragments)
+    @Inject lateinit var navigatorHolder: NavigatorHolder
+    private val navigator = AppNavigator(this, R.id.container)
+
     private var binding: ActivityMainBinding? = null
     override fun onResumeFragments() {
         super.onResumeFragments()
@@ -21,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding?.root)
-            router.navigateTo(UsersScreen)
+//            router.navigateTo(UsersScreen)
+        App.instance.appComponent.inject(this)
         }
     }
 

@@ -1,18 +1,18 @@
 package com.example.interactionwits_hw5.mvpusers
 
-import android.widget.Toast
-import com.example.interactionwits_hw5.App
 import com.example.interactionwits_hw5.data.GitHubUserRepository
 import com.example.interactionwits_hw5.mvpuser.UserScreen
 import com.example.interactionwits_hw5.navigation.CustomRouter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class UsersPresenter (
-    private val userRepository: GitHubUserRepository,
-    private val router: CustomRouter
-): MvpPresenter<UsersView>() {
+class UsersPresenter (val uiScheduler: Scheduler): MvpPresenter<UsersView>() {
+
+    @Inject lateinit var userRepository: GitHubUserRepository
+    @Inject lateinit var router: CustomRouter
 
     override fun onFirstViewAttach() {
         updateContent()
