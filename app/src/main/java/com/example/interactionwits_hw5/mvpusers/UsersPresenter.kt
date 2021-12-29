@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 import javax.inject.Inject
 
-class UsersPresenter (val uiScheduler: Scheduler): MvpPresenter<UsersView>() {
+class UsersPresenter (): MvpPresenter<UsersView>() {
 
     @Inject lateinit var userRepository: GitHubUserRepository
     @Inject lateinit var router: CustomRouter
@@ -29,9 +29,7 @@ class UsersPresenter (val uiScheduler: Scheduler): MvpPresenter<UsersView>() {
             .subscribe({
                 viewState.showUsers(it)
             },{
-//                val errorMessage = it.message
-//                Toast.makeText(App.instance.getContext(), "$errorMessage", Toast.LENGTH_SHORT)
-//                    .show()
+
             })
     }
 }

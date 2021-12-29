@@ -1,40 +1,25 @@
 package com.example.interactionwits_hw5
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import com.example.interactionwits_hw5.dagger.AppComponent
-import com.example.interactionwits_hw5.dagger.AppModule
-import com.example.interactionwits_hw5.navigation.CustomRouter
-import com.github.terrakok.cicerone.Cicerone
+import com.example.interactionwits_hw5.dagger.DaggerAppComponent
 
 class App : Application() {
 
-//    @SuppressLint("StaticFieldLeak")
-//    object ContextHolder{lateinit var context: Context}
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
         instance = this
-//        ContextHolder.context = this
-        appComponent = DaggerAppComponent
-            .builder()
-            .appModule(AppModule(this))
+        appComponent = DaggerAppComponent.builder()
+            .setContext(this)
             .build()
     }
 
     companion object Navigation {
-
-        //        private val cicerone: Cicerone<CustomRouter> by lazy {
-//            Cicerone.create(CustomRouter())
-//        }
-//        val navigatorHolder = cicerone.getNavigatorHolder()
-//        val router = cicerone.router
         lateinit var instance: App
     }
-
-    lateinit var appComponent: AppComponent
-
-    fun getContext(): Context = applicationContext
+        fun getContext(): Context = applicationContext
 
 }

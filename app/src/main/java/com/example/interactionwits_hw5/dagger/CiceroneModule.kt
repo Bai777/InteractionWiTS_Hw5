@@ -5,7 +5,6 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import dagger.Module
 import dagger.Provides
-import okhttp3.Route
 import javax.inject.Singleton
 
 @Module
@@ -23,7 +22,4 @@ class CiceroneModule {
     @Provides
     fun router(): Router = cicerone.router
 
-//    @Singleton
-//    @Provides
-//    fun screens(): Iscreens = AndroidScreens()
 }

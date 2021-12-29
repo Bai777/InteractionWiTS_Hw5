@@ -2,12 +2,12 @@ package com.example.interactionwits_hw5.mvpusers
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import com.example.interactionwits_hw5.App
 import com.example.interactionwits_hw5.R
 import com.example.interactionwits_hw5.data.GitHubUser
 import com.example.interactionwits_hw5.databinding.ViewUsersBinding
 import com.example.interactionwits_hw5.recycler.UsersAdapter
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -15,7 +15,7 @@ class UsersFragment : MvpAppCompatFragment(R.layout.view_users), UsersView, User
 
 
     private val presenter: UsersPresenter by moxyPresenter {
-        UsersPresenter(AndroidSchedulers.mainThread()).apply {
+        UsersPresenter().apply {
                 App.instance.appComponent.inject(this)
         }
     }
@@ -39,8 +39,6 @@ class UsersFragment : MvpAppCompatFragment(R.layout.view_users), UsersView, User
 
 
     companion object {
-        fun newInstance() = UsersFragment().apply {
-            App.instance.appComponent.inject(this)
-        }
+        fun newInstance(): Fragment = UsersFragment()
     }
 }
