@@ -5,9 +5,10 @@ import com.example.interactionwits_hw5.data.room.DBStorage
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
-class GitHubUserRepositoryImpl(
-    @Inject val gitHubApi: GitHubApi,
-    @Inject val roomDb: DBStorage
+class GitHubUserRepositoryImpl
+    @Inject constructor(
+    private val gitHubApi: GitHubApi,
+    private val roomDb: DBStorage
 ) : GitHubUserRepository {
 
     override fun getUsers(): Single<List<GitHubUser>> {

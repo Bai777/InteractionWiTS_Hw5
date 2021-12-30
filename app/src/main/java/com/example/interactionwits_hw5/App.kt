@@ -2,17 +2,17 @@ package com.example.interactionwits_hw5
 
 import android.app.Application
 import android.content.Context
-import com.example.interactionwits_hw5.dagger.AppComponent
-import com.example.interactionwits_hw5.dagger.DaggerAppComponent
+import com.example.interactionwits_hw5.dagger.ApplicationComponent
+import com.example.interactionwits_hw5.dagger.DaggerApplicationComponent
 
 class App : Application() {
 
-    lateinit var appComponent: AppComponent
+    lateinit var applicationComponent: ApplicationComponent
 
     override fun onCreate() {
         super.onCreate()
         instance = this
-        appComponent = DaggerAppComponent.builder()
+        applicationComponent = DaggerApplicationComponent.builder()
             .setContext(this)
             .build()
     }
