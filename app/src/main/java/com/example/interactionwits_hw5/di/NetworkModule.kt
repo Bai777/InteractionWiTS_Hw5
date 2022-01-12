@@ -1,7 +1,6 @@
-package com.example.interactionwits_hw5.dagger
+package com.example.interactionwits_hw5.di
 
 import com.example.interactionwits_hw5.data.retrofit.GitHubApi
-import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -13,7 +12,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
-import javax.inject.Singleton
 
 @Module
 class NetworkModule {

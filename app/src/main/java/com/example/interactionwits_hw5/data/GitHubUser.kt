@@ -1,13 +1,10 @@
 package com.example.interactionwits_hw5.data
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
 @Entity(tableName = "GitHubUserTable")
 data class GitHubUser(
 
@@ -30,4 +27,4 @@ data class GitHubUser(
     @ColumnInfo
     @SerializedName("name")
     val name: String = ""
-) : Parcelable
+)

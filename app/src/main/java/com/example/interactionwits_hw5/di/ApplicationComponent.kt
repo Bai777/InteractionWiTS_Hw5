@@ -1,4 +1,4 @@
-package com.example.interactionwits_hw5.dagger
+package com.example.interactionwits_hw5.di
 
 import android.content.Context
 import com.example.interactionwits_hw5.MainActivity
@@ -12,13 +12,15 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AppModule::class,
-        NetworkModule::class,
         CiceroneModule::class,
-        RoomModule::class,
-        RepositoryModule::class
+        NetworkModule::class,
+        RepositoryModule::class,
+        RoomModule::class
     ]
 )
 interface ApplicationComponent {
+
+    //fun provideApplicationComponent(): ApplicationComponent.Builder
 
     @Component.Builder
     interface Builder{
@@ -33,4 +35,5 @@ interface ApplicationComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(userPresenter: UserPresenter)
     fun inject(usersPresenter: UsersPresenter)
+
 }

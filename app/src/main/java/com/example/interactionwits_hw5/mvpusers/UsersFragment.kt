@@ -6,12 +6,19 @@ import androidx.fragment.app.Fragment
 import com.example.interactionwits_hw5.App
 import com.example.interactionwits_hw5.R
 import com.example.interactionwits_hw5.data.GitHubUser
+import com.example.interactionwits_hw5.data.GitHubUserRepository
 import com.example.interactionwits_hw5.databinding.ViewUsersBinding
+import com.example.interactionwits_hw5.navigation.CustomRouter
 import com.example.interactionwits_hw5.recycler.UsersAdapter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
 class UsersFragment : MvpAppCompatFragment(R.layout.view_users), UsersView, UsersAdapter.OnUserClickListener {
+
+
+    @Inject lateinit var userRepository: GitHubUserRepository
+    @Inject lateinit var router: CustomRouter
 
 
     private val presenter: UsersPresenter by moxyPresenter {

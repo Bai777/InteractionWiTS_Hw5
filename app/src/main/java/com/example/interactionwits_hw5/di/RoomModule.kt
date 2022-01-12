@@ -1,4 +1,4 @@
-package com.example.interactionwits_hw5.dagger
+package com.example.interactionwits_hw5.di
 
 import android.content.Context
 import androidx.room.Room

@@ -1,5 +1,6 @@
-package com.example.interactionwits_hw5.dagger
+package com.example.interactionwits_hw5.di
 
+import com.example.interactionwits_hw5.navigation.CustomRouter
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
@@ -9,10 +10,10 @@ import javax.inject.Singleton
 
 @Module
 class CiceroneModule {
-    var cicerone: Cicerone<Router> = Cicerone.create()
+    var cicerone: Cicerone<CustomRouter> = Cicerone.create(CustomRouter())
 
     @Provides
-    fun cicerone(): Cicerone<Router> = cicerone
+    fun cicerone(): Cicerone<CustomRouter> = cicerone
 
     @Singleton
     @Provides
