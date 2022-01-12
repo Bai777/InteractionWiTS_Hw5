@@ -3,10 +3,13 @@ package com.example.interactionwits_hw5.mvpuser
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.example.interactionwits_hw5.App
 import com.example.interactionwits_hw5.R
 import com.example.interactionwits_hw5.data.GitHubUser
 import com.example.interactionwits_hw5.databinding.ViewUserBinding
 import moxy.MvpAppCompatFragment
+import moxy.ktx.moxyPresenter
 
 class UserFragment : MvpAppCompatFragment(R.layout.view_user), UserView {
 
@@ -14,6 +17,12 @@ class UserFragment : MvpAppCompatFragment(R.layout.view_user), UserView {
 
     private val userName: String by lazy {
         arguments?.getString(ARG_USER_NAME).orEmpty()
+    }
+
+    private val presenter: UserPresenter by moxyPresenter {
+        UserPresenter(userName).apply {
+            App.instance.applicationComponent.provideApplicationComponent().build().inject(this)
+        }
     }
 
 
@@ -25,6 +34,9 @@ class UserFragment : MvpAppCompatFragment(R.layout.view_user), UserView {
 
     override fun showUser(user: GitHubUser) {
         viewBinding.userLogin.text = user.name
+        Glide.with(viewBinding.userAvatar.context)
+            .load(user.avatarUrl)
+            .into(viewBinding.userAvatar)
     }
 
     companion object {

@@ -17,10 +17,6 @@ import javax.inject.Inject
 class UsersFragment : MvpAppCompatFragment(R.layout.view_users), UsersView, UsersAdapter.OnUserClickListener {
 
 
-    @Inject lateinit var userRepository: GitHubUserRepository
-    @Inject lateinit var router: CustomRouter
-
-
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter().apply {
                 App.instance.applicationComponent.inject(this)

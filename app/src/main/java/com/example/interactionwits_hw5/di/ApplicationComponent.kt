@@ -4,6 +4,8 @@ import android.content.Context
 import com.example.interactionwits_hw5.MainActivity
 import com.example.interactionwits_hw5.mvpuser.UserPresenter
 import com.example.interactionwits_hw5.mvpusers.UsersPresenter
+import com.example.interactionwits_hw5.di.ApplicationComponent
+import com.example.interactionwits_hw5.mvpuser.di.GitHubUserComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -20,7 +22,7 @@ import javax.inject.Singleton
 )
 interface ApplicationComponent {
 
-    //fun provideApplicationComponent(): ApplicationComponent.Builder
+    fun provideApplicationComponent(): GitHubUserComponent.Builder
 
     @Component.Builder
     interface Builder{

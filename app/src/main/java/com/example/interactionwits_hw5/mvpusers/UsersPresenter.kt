@@ -8,7 +8,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 import javax.inject.Inject
 
-class UsersPresenter() : MvpPresenter<UsersView>() {
+class UsersPresenter(
+    //private val subject: @NonNull BehaviorSubject<String> = BehaviorSubject.create()
+) : MvpPresenter<UsersView>() {
 
     @Inject lateinit var userRepository: GitHubUserRepository
     @Inject lateinit var router: CustomRouter
@@ -18,11 +20,13 @@ class UsersPresenter() : MvpPresenter<UsersView>() {
     }
 
     fun goToNextScreen(name: String) {
-        router.navigateTo(UserScreen(name))
+        router.openDeepLink(name)
+//        router.navigateTo(UserScreen(name))
     }
 
     private fun updateContent() {
-        userRepository.getUsers()
+        userRepository
+            .getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
