@@ -20,8 +20,8 @@ class UsersPresenter(
     }
 
     fun goToNextScreen(name: String) {
-        router.openDeepLink(name)
-//        router.navigateTo(UserScreen(name))
+//        router.openDeepLink(name)
+        router.navigateTo(UserScreen(name))
     }
 
     private fun updateContent() {
