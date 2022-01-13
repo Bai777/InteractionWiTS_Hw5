@@ -9,7 +9,6 @@ import moxy.MvpPresenter
 import javax.inject.Inject
 
 class UsersPresenter(
-    //private val subject: @NonNull BehaviorSubject<String> = BehaviorSubject.create()
 ) : MvpPresenter<UsersView>() {
 
     @Inject lateinit var userRepository: GitHubUserRepository
@@ -20,8 +19,8 @@ class UsersPresenter(
     }
 
     fun goToNextScreen(name: String) {
-//        router.openDeepLink(name)
-        router.navigateTo(UserScreen(name))
+        router.openDeepLink(name)
+//        router.navigateTo(UserScreen(name))
     }
 
     private fun updateContent() {
