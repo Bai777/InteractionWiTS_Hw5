@@ -7,4 +7,7 @@ import moxy.viewstate.strategy.alias.SingleState
 interface UsersView : MvpView {
     @SingleState
     fun showUsers(users: List<GitHubUser>)
+
+    @SingleState
+    fun setProgressBar(state: Boolean)
 }
