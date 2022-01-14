@@ -39,6 +39,11 @@ class UserFragment : MvpAppCompatFragment(R.layout.view_user), UserView {
             .into(viewBinding.userAvatar)
     }
 
+    override fun setProgressBar(state: Boolean) {
+        val visibilityProgressBar = if (state) View.VISIBLE else View.GONE
+        viewBinding.progressBar.visibility = visibilityProgressBar
+    }
+
     companion object {
         private const val ARG_USER_NAME = "arg_user_name"
 

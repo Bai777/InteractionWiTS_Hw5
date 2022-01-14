@@ -1,5 +1,7 @@
 package com.example.interactionwits_hw5.mvpusers
 
+import android.widget.Toast
+import com.example.interactionwits_hw5.App
 import com.example.interactionwits_hw5.data.GitHubUserRepository
 import com.example.interactionwits_hw5.mvpuser.UserScreen
 import com.example.interactionwits_hw5.navigation.CustomRouter
@@ -20,7 +22,6 @@ class UsersPresenter(
 
     fun goToNextScreen(name: String) {
         router.openDeepLink(name)
-//        router.navigateTo(UserScreen(name))
     }
 
     private fun updateContent() {
@@ -28,10 +29,18 @@ class UsersPresenter(
             .getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe{
+                viewState.setProgressBar(true)
+            }
+            .doFinally {
+                viewState.setProgressBar(false)
+            }
             .subscribe({
                 viewState.showUsers(it)
             },{
-
+                val errorMessage = it.message
+                Toast.makeText(App.instance.getContext(), "$errorMessage", Toast.LENGTH_SHORT)
+                    .show()
             })
     }
 }

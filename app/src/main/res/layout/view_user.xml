@@ -5,6 +5,13 @@
     android:orientation="horizontal"
     tools:ignore="UseCompoundDrawables">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <ImageView
         android:id="@+id/userAvatar"
         android:layout_width="40dp"
@@ -19,5 +26,4 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         tools:text="login1" />
-
 </LinearLayout>

@@ -36,6 +36,11 @@ class UsersFragment : MvpAppCompatFragment(R.layout.view_users), UsersView, User
         usersAdapter.submitList(users)
     }
 
+    override fun setProgressBar(state: Boolean) {
+        val visibilityProgressBar = if (state) View.VISIBLE else View.GONE
+        viewBinging.progressBar.visibility = visibilityProgressBar
+    }
+
     override fun onUserPicked(user: GitHubUser) {
         presenter.goToNextScreen(user.login!!)
     }

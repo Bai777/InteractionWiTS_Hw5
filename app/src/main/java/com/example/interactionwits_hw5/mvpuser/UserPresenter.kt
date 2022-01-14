@@ -26,8 +26,13 @@ class UserPresenter(private val userName: String,
         userRepository.getUserByName(userName)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe{
+                viewState.setProgressBar(true)
+            }
+            .doFinally {
+                viewState.setProgressBar(false)
+            }
             .subscribe({
-               // viewState.showUser(it)
                 subject.onNext(it)
             },{
                 val errorMessage = it.message
